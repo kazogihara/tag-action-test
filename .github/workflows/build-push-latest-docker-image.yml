@@ -2,8 +2,7 @@ name: Build and Push Docker Image on latest
 
 on:
   push:
-    tags:
-      - 'v*.*.*'  # バージョンタグがプッシュされたときにトリガー
+    branches: main
   workflow_dispatch: # launch manually.
 
 jobs:
