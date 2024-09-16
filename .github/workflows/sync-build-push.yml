@@ -15,19 +15,16 @@ jobs:
         with:
           ref: main # checkout main branch.
 
-      - name: Add upstream repository
-        run: git remote add upstream https://github.com/skybrush-io/skybrush-server.git
+      - name: Add upstream repository and configs
+        run: |
+            git remote add upstream https://github.com/skybrush-io/skybrush-server.git
+            git config --global user.name "GitHub Actions"
+            git config --global user.email "actions@github.com"
 
       - name: Fetch and merge upstream main branch
         run: |
           git fetch upstream
           git merge upstream/main
-
-      - name: Commit changes if any
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git commit -am "Sync with upstream skybrush-server" || echo "No changes to commit"
 
       - name: Push changes to skybrush-server-for-docker repository
         run: |
